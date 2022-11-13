@@ -9,6 +9,7 @@ while true do
 		speak("Too high!")
 	else
 		speak("Yay, you win!")
+		wait(1000)
 		break
 	end
 end

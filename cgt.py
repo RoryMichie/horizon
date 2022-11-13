@@ -38,7 +38,7 @@ def runcode():
     addfunc("urlsound",urlsound)
     addfunc("pyeval",eval)
     addfunc("sound",sound)
-    addfunc("ms",time.time)
+    addfunc("elapsed",time.time)
     addfunc("random",random.randint)
     addfunc("random_seed",random.seed)
     addfunc("wait",wait)
