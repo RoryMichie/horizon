@@ -1,4 +1,3 @@
-import ctypes
 import math
 from sound_lib import output,stream
 import random
