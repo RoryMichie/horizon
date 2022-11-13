@@ -34,7 +34,7 @@ def runcode():
     addfunc("degrees_to_radians",math.radians)
     addfunc("luaexec",luaexec)
     addfunc("pyexec",exec)
-    addfunc("luaevel",a.eval)
+    addfunc("luaeval",a.eval)
     addfunc("urlsound",urlsound)
     addfunc("pyeval",eval)
     addfunc("sound",sound)
