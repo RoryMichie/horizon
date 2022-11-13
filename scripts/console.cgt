@@ -1,3 +1,4 @@
 while true do
-	luaexec(input())
+	e=luaexec(input())
+	speak(">")
 end

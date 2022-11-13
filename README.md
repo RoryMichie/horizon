@@ -9,10 +9,7 @@ This is where the new revolution of audiogames begins: cgt has come in to take t
 Cgt, unofficialy dubbed "chaos game toolkit" by it's developers, is a modern, open source audiogame engine, written in python but with a lua scripting engine.
 We chose lua because it is very simple: before cgt, I did not know any lua, and within a day I had learned it completely. It is an extremely simple scripting language and is a great starting point for new programmers. It is similar in some ways to languages such as python.
 ##examples
-Here are some examples of cgt's usage.
-###hello world program
-speak("Hello world! What is your name?")
-name=input()
-speak("Nice to meet you, "+name+". My name is chaos!")
-speak("Press enter to exit")
-input()
+Some example scripts are located in the scripts directory.
+## dependencies
+CGT requires the microsoft visual c++ 2017 redistributeable to work correctly. You can download it from the link below
+https://aka.ms/vs/17/release/vc_redist.x64.exe

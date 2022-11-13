@@ -12,12 +12,15 @@ b=input("Enter a file to run lua code from it")
 def addfunc(shit,shit2):
     a.globals()[shit]=shit2
 def urlsound(urlname):
-    return stream.URLStream(url=urlname)
+    handle=stream.URLStream(url=urlname)
+    return handle
 def sound(filename):
     handle=stream.FileStream(file=filename)
     return handle
 def wait(h):
     time.sleep(h/1000)
+def luaexec(code):
+    a.execute(code)
 def runcode():
     o=output.Output()
     addfunc("sine",math.sin)
@@ -29,8 +32,7 @@ def runcode():
     addfunc("pi",math.pi)
     addfunc("radians_to_degrees",math.degrees)
     addfunc("degrees_to_radians",math.radians)
-
-    addfunc("luaexec",a.execute)
+    addfunc("luaexec",luaexec)
     addfunc("pyexec",exec)
     addfunc("luaevel",a.eval)
     addfunc("urlsound",urlsound)
