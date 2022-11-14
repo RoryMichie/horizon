@@ -1,4 +1,4 @@
-import math
+import ctypes
 from sound_lib import output,stream
 import random
 from cytolk import tolk
@@ -31,8 +31,6 @@ def init():
     addfunc("pyeval",eval)
     addfunc("sound",sound)
     addfunc("elapsed",time.time)
-    addfunc("random",random.randint)
-    addfunc("random_seed",random.seed)
     addfunc("wait",wait)
     addfunc("speak",tolk.speak)
     addfunc("input",input)
