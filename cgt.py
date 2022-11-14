@@ -16,8 +16,11 @@ def urlsound(urlname):
 def sound(filename):
     handle=stream.FileStream(file=filename)
     return handle
-def wait(h):
-    time.sleep(h/1000)
+def wait(j):
+    t=time.time()
+    while True:
+        if time.time()>=t+j:
+            return
 def luaexec(code):
     a.execute(code)
 def runcode():
@@ -33,11 +36,11 @@ def runcode():
     addfunc("degrees_to_radians",math.radians)
     addfunc("luaexec",luaexec)
     addfunc("pyexec",exec)
-    addfunc("luaevel",a.eval)
+    addfunc("luaeval",a.eval)
     addfunc("urlsound",urlsound)
     addfunc("pyeval",eval)
     addfunc("sound",sound)
-    addfunc("ms",time.time)
+    addfunc("elapsed",time.time)
     addfunc("random",random.randint)
     addfunc("random_seed",random.seed)
     addfunc("wait",wait)
