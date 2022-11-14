@@ -9,7 +9,7 @@ This is where this program comes in.
 Cgt, unofficialy dubbed "chaos game toolkit" by it's developers, is a modern, open source audiogame engine, written in python but with a lua scripting engine. It packs together some of our own components, as well as well loved sound and speech libraries, such as CyTolk, SoundLib, and Synthizer, in such a way that the engine is as easy to use, or as flexible, as you would like it to be.
 Programs written in cgt are actually lua. The engine supports execution within execution to an unlimited number of times: luaexec("luaexec('luaexec(exit())')") is a valid line of code in cgt. The program also supports interaction with the external python environment via the pyeval and pyexec functions
 
-We chose lua because it is very simple: before cgt, I did not know any lua, and within a day I had learned it completely. It is an extremely simple scripting language and is a great starting point for new programmers. It is similar in some ways to languages such as python.
+We chose lua because it is very simple: A new programmer can learn it within a week. The language is similar to dynamic languages such as python, so if you wish to graduate from cgt into a lower level system, you may, though we hope that cgt will provide all the features you need.
 ## examples
 Some example scripts are located in the scripts directory.
 ## dependencies
