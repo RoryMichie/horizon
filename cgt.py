@@ -7,7 +7,6 @@ tolk.load()
 f=None
 import lupa
 a=lupa.LuaRuntime()
-b=input("Enter a file to run lua code from it")
 def addfunc(shit,shit2):
     a.globals()[shit]=shit2
 def urlsound(urlname):
@@ -23,17 +22,8 @@ def wait(j):
             return
 def luaexec(code):
     a.execute(code)
-def runcode():
+def init():
     o=output.Output()
-    addfunc("sine",math.sin)
-    addfunc("cosine",math.cos)
-    addfunc("tangent",math.tan)
-    addfunc("arc_sine",math.asin)
-    addfunc("arc_cosine",math.acos)
-    addfunc("arc_tangent",math.atan)
-    addfunc("pi",math.pi)
-    addfunc("radians_to_degrees",math.degrees)
-    addfunc("degrees_to_radians",math.radians)
     addfunc("luaexec",luaexec)
     addfunc("pyexec",exec)
     addfunc("luaeval",a.eval)
@@ -46,11 +36,24 @@ def runcode():
     addfunc("wait",wait)
     addfunc("speak",tolk.speak)
     addfunc("input",input)
+def runcode(b):
     try:
-        a.execute(f.read())
+        a.execute(b)
     except Exception as e:
         tolk.speak("An error occured: "+str(e)+". Press enter to continue")
         input()
-
-f=open(b,"rb")
-runcode()
+init()
+def console():
+    tolk.speak("Welcome to the cgt debugging console.")
+    while True:
+        tolk.speak(">>>")
+        runcode(input())
+while True:
+    print("Select something to do: run, or console",end="\r\n")
+    s=input()
+    if s=="run":
+        b=input("Enter a file to run lua code from it")
+        f=open(b)
+        runcode(f.read())
+    if s=="console":
+        console()
