@@ -17,8 +17,11 @@ def urlsound(urlname):
 def sound(filename):
     handle=stream.FileStream(file=filename)
     return handle
-def wait(h):
-    time.sleep(h/1000)
+def wait(j):
+    t=time.time()
+    while True:
+        if time.time()>=t+j:
+            return
 def luaexec(code):
     a.execute(code)
 def runcode():
