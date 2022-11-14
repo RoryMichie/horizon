@@ -1,4 +1,1 @@
-while true do
-	e=luaexec(input())
-	speak(">")
-end
+speak("Welcome to the cgt debugging console.")
