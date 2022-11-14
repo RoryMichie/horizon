@@ -1,4 +1,5 @@
-target=random(1,100)
+require "math"
+target=mathj.random(1,100)
 speak("Welcome to guess the number. Let's see if you can find my number, between 1 and 100")
 while true do
 	speak("Enter your guess")
