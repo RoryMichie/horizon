@@ -1,2 +1,5 @@
 __pycache__
 cgtvenv
+dist
+build
+cgt.spec
