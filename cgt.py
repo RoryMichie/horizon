@@ -1,4 +1,3 @@
-import ctypes
 from sound_lib import output,stream
 import random
 from cytolk import tolk
