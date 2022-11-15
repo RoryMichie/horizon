@@ -33,18 +33,17 @@ def init():
     addfunc("elapsed",time.time)
     addfunc("wait",wait)
     addfunc("speak",tolk.speak)
-    addfunc("input",input)
 def runcode(b):
     try:
         a.execute(b)
     except Exception as e:
-        tolk.speak("An error occured: "+str(e)+". Press enter to continue")
+        print("An error occured: "+str(e)+". Press enter to continue")
         input()
 init()
 def console():
-    tolk.speak("Welcome to the cgt debugging console.")
+    print("Welcome to the cgt debugging console.")
     while True:
-        tolk.speak(">>>")
+        print(">>>")
         runcode(input())
 while True:
     print("Select something to do: run, or console",end="\r\n")

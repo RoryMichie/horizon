@@ -1,15 +1,16 @@
+require "io"
 require "math"
 target=math.random(1,100)
 speak("Welcome to guess the number. Let's see if you can find my number, between 1 and 100")
 while true do
-	speak("Enter your guess")
-	g=tonumber(input())
+	io.write("Enter your guess\n")
+	g=tonumber(io.read())
 	if g<target then
-	speak("Too low!")
+	io.write("Too low!\n")
 	elseif g>target then
-		speak("Too high!")
+		io.write("Too high!\n")
 	else
-		speak("Yay, you win!")
+		io.write("Yay, you win!\n")
 		wait(1)
 		break
 	end
