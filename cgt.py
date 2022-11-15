@@ -6,9 +6,9 @@ import time
 tolk.load()
 f=None
 import lupa
-a=lupa.LuaRuntime()
-def addfunc(shit,shit2):
-    a.globals()[shit]=shit2
+CGTRuntime=lupa.LuaRuntime()
+def addfunc(name,ref):
+    CGTRuntime.globals()[name]=ref
 def urlsound(urlname):
     handle=stream.URLStream(url=urlname)
     return handle
@@ -21,12 +21,12 @@ def wait(j):
         if time.time()>=t+j:
             return
 def luaexec(code):
-    a.execute(code)
+    CGTRuntime.execute(code)
 def init():
     o=output.Output()
     addfunc("luaexec",luaexec)
     addfunc("pyexec",exec)
-    addfunc("luaeval",a.eval)
+    addfunc("luaeval",CGTRuntime.eval)
     addfunc("urlsound",urlsound)
     addfunc("pyeval",eval)
     addfunc("sound",sound)
@@ -35,7 +35,7 @@ def init():
     addfunc("speak",tolk.speak)
 def runcode(b):
     try:
-        a.execute(b)
+        CGTRuntime.execute(b)
     except Exception as e:
         print("An error occured: "+str(e)+". Press enter to continue")
         input()
