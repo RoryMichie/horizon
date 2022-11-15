@@ -1,7 +1,7 @@
 require "io"
 require "math"
 target=math.random(1,100)
-speak("Welcome to guess the number. Let's see if you can find my number, between 1 and 100")
+io.write("Welcome to guess the number. Let's see if you can find my number, between 1 and 100")
 while true do
 	io.write("Enter your guess\n")
 	g=tonumber(io.read())
