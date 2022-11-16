@@ -17,6 +17,13 @@ Cgt, unofficialy dubbed "chaos game toolkit" by it's developers, is a modern, op
 Programs written in cgt are actually lua. The engine supports execution within execution to an unlimited number of times: luaexec("luaexec('luaexec(exit())')") is a valid line of code in cgt. The program also supports interaction with the external python environment via the pyeval and pyexec functions
 
 We chose lua because it is very simple: A new programmer can learn it within a week. The language is similar to dynamic languages such as python, so if you wish to graduate from cgt into a lower level system, you may, though we hope that cgt will provide all the features you need.
+## features
+
+The game engine includes features such as:
+
+*3d sound with synthizer
+*normal sound with bass
+*speech output with tolk
 ## examples
 Some example scripts are located in the scripts directory.
 ## dependencies
@@ -26,8 +33,8 @@ https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 ## important note
 
-CGTT is not a finnished product at the time of this writing. We are publishing the code so that those who wish to work on it and track it's development can contribute, learn how it works and experiment, though we do not and will never guarantee it's stability.
-# Where to get a binary?
+CGT is not a finnished product at the time of this writing. We are publishing the code so that those who wish to work on it and track it's development can contribute, learn how it works and experiment, though we do not and will never guarantee it's stability.
+## Where to get a binary?
 
 Binaries are available here:
 
