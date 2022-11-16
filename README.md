@@ -1,5 +1,6 @@
 # cgt
- A modern audiogame creation suite
+			A modern audiogame creation suite
+			Version: 0.1
 ## Introduction
 Several years ago, Blastbay Studios released a program for the creation of AudioGames known as Blastbay Game Toolkit.
 
@@ -26,3 +27,9 @@ https://aka.ms/vs/17/release/vc_redist.x64.exe
 ## important note
 
 CGTT is not a finnished product at the time of this writing. We are publishing the code so that those who wish to work on it and track it's development can contribute, learn how it works and experiment, though we do not and will never guarantee it's stability.
+# Where to get a binary?
+
+Binaries are available here:
+
+https://sightlesswolf.com/cgt0.1.zip
+
