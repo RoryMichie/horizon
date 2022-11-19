@@ -1,12 +1,17 @@
 import synthizer
 
+buffer_cache={}
 
 class sound_synthizer:
     def __init__(self, filename, context):
         self.filename = filename
         self.context = context
         self.context.default_panner_strategy.value = synthizer.PannerStrategy.HRTF
-        self.buffer = synthizer.Buffer.from_file(filename)
+        if filename in buffer_cache:
+            self.buffer=buffer_cache[filename]
+        else:
+            self.buffer = synthizer.Buffer.from_file(filename)
+            buffer_cache[filename]=self.buffer
         self.generator = synthizer.BufferGenerator(context)
         self.generator.buffer.value = self.buffer
 
