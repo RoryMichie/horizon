@@ -10,9 +10,7 @@ while true do
 		chaos.NextFrameEvent()
 		e=chaos.EventInfo()
 		if e==event_key_push then
-			speak("beep")
 			v=keyname(chaos.EventValue())
-			speak(v)
 			if v=="space" then
 				speak("Space pressed.")
 			end

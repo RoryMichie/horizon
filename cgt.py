@@ -10,8 +10,8 @@ tolk.load()
 CGTRuntime = lupa.LuaRuntime()
 
 
-def keyname(key):
-    return chaos.KeyValueToString(keyname)
+def keyname(keyname):
+    return chaos.KeyValueToString(str(keyname))
 def addfunc(name, ref):
     CGTRuntime.globals()[name] = ref
 
