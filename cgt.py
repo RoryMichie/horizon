@@ -1,3 +1,4 @@
+import ctypes
 import lupa
 import sound_synthizer
 from sound_synthizer import synthizer
@@ -28,6 +29,12 @@ def luaexec(code):
 
 def init():
     global ctx
+    chaos=ctypes.cdll.LoadLibrary("./chaos.dll")
+    chaos.KeyValueToString.restype=ctypes.c_wchar_p
+    addfunc("chaos",chaos)
+    addfunc("event_none",-1)
+    addfunc("event_key_push",0)
+    addfunc("event_key_release",1)
     o = sound.output.Output()
     addfunc("luaexec", luaexec)
     addfunc("pyexec", exec)
