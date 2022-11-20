@@ -1,6 +1,6 @@
 # cgt
 			A modern audiogame creation suite
-			Version: 0.1
+			Version: 0.2
 ## Introduction
 Several years ago, Blastbay Studios released a program for the creation of AudioGames known as Blastbay Game Toolkit.
 
@@ -31,12 +31,14 @@ CGT requires the microsoft visual c++ 2017 redistributeable to work correctly. Y
 
 https://aka.ms/vs/17/release/vc_redist.x64.exe
 
+Although the kit also requires the chaos game engine, we have included a binary of it here for simplicity. The source code to this engine is not available.
+
 ## important note
 
 CGT is not a finnished product at the time of this writing. We are publishing the code so that those who wish to work on it and track it's development can contribute, learn how it works and experiment, though we do not and will never guarantee it's stability.
 ## Where to get a binary?
 
-Binaries are available here:
+Binaries are available for the latest version at the link below that is updated each new version.
 
-https://sightlesswolf.com/cgt0.1.zip
+https://sightlesswolf.com/cgt0.2.zip
 
