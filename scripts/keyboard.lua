@@ -3,20 +3,19 @@ chaos.Initialize("keyboard test")
 speak("initialised")
 chaos.TrackKey("a")
 chaos.TrackKey("space")
+chaos.TrackKey("escape")
 speak("tracked keys")
 while true do
 	chaos.GetCurrentFrameEvents()
-	repeat
-		chaos.NextFrameEvent()
-		e=chaos.EventInfo()
-		if e==event_key_push then
-			v=keyname(chaos.EventValue())
-			if v=="space" then
-				speak("Space pressed.")
-			end
-			if v=="a" then
-				speak("a is for apple")
-			end
-		end
-	until e==event_none
+	if chaos.KeyPressed("space")==1 then
+		speak("beep")
+	end
+	if chaos.KeyPressed("a")==1 then
+		speak("A is for apple.")
+	end
+	if chaos.KeyPressed("escape")==1 then
+		speak("Goodbye")
+		chaos.shutdown()
+		break
+	end
 end
