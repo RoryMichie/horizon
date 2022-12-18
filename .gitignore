@@ -3,3 +3,4 @@ cgtvenv
 dist
 build
 cgt.spec
+.DS_Store
