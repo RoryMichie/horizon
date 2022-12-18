@@ -9,9 +9,6 @@ import time
 tolk.load()
 CGTRuntime = lupa.LuaRuntime()
 
-
-def keyname(keyname):
-    return chaos.KeyValueToString(str(keyname))
 def addfunc(name, ref):
     CGTRuntime.globals()[name] = ref
 
@@ -30,17 +27,7 @@ def luaexec(code):
 
 
 def init():
-    global chaos
     global ctx
-    chaos=ctypes.cdll.LoadLibrary("./chaos.dll")
-    chaos.KeyValueToString.restype=ctypes.c_wchar_p
-    
-    addfunc("keyname",keyname)
-    addfunc("chaos",chaos)
-    addfunc("event_none",-1)
-    addfunc("event_key_push",0)
-    addfunc("event_key_release",1)
-    o = sound.output.Output()
     addfunc("luaexec", luaexec)
     addfunc("pyexec", exec)
     addfunc("luaeval", CGTRuntime.eval)
@@ -72,7 +59,7 @@ def runcode(b):
 def console():
     print("Welcome to the cgt debugging console.")
     while True:
-        print(">>>")
+        print(">")
         runcode(input())
 
 
