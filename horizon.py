@@ -13,13 +13,6 @@ def addfunc(name, ref):
 def sound3d(name):
     return sound_synthizer.sound_synthizer(name, ctx)
 
-def wait(j):
-    t = time.time()
-    while True:
-        if time.time() >= t+j:
-            return
-
-
 def luaexec(code):
     CGTRuntime.execute(code)
 
@@ -36,8 +29,8 @@ def init():
     addfunc("sound", sound.sound)
     addfunc("sound3d", sound3d)
     addfunc("elapsed", time.time)
-    addfunc("wait", wait)
     addfunc("speak", o.output)#It doe braille too
+    addfunc("wait", time.sleep)
     with synthizer.initialized(
             log_level=synthizer.LogLevel.DEBUG, logging_backend=synthizer.LoggingBackend.STDERR):
 
