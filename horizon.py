@@ -4,11 +4,9 @@ import sound_synthizer
 from sound_synthizer import synthizer
 import sound
 import random
-from cytolk import tolk
 import time
-tolk.load()
 CGTRuntime = lupa.LuaRuntime()
-
+import accessible_output2.outputs.auto
 def addfunc(name, ref):
     CGTRuntime.globals()[name] = ref
 
@@ -27,7 +25,9 @@ def luaexec(code):
 
 
 def init():
+    global o
     global ctx
+    o = accessible_output2.outputs.auto.Auto()
     addfunc("luaexec", luaexec)
     addfunc("pyexec", exec)
     addfunc("luaeval", CGTRuntime.eval)
@@ -37,7 +37,7 @@ def init():
     addfunc("sound3d", sound3d)
     addfunc("elapsed", time.time)
     addfunc("wait", wait)
-    addfunc("speak", tolk.speak)
+    addfunc("speak", o.output)#It doe braille too
     with synthizer.initialized(
             log_level=synthizer.LogLevel.DEBUG, logging_backend=synthizer.LoggingBackend.STDERR):
 
