@@ -2,3 +2,5 @@ synthizer
 sound_lib
 lupa
 accessible_output2
+pysdl2
+pysdl2-dll
