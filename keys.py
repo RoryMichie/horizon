@@ -75,7 +75,21 @@ keys = {
     "semicolon": sdl2.SDLK_SEMICOLON,
     "enter": sdl2.SDLK_RETURN,
     "escape": sdl2.SDLK_ESCAPE,
+    "pad0": sdl2.SDLK_KP_0,
+    "pad1": sdl2.SDLK_KP_1,
+    "pad2": sdl2.SDLK_KP_2,
+    "pad3": sdl2.SDLK_KP_3,
+    "pad4": sdl2.SDLK_KP_4,
+    "pad5": sdl2.SDLK_KP_5,
+    "pad6": sdl2.SDLK_KP_6,
+    "pad7": sdl2.SDLK_KP_7,
+    "pad8": sdl2.SDLK_KP_8,
+    "pad9": sdl2.SDLK_KP_9,
+    "padenter": sdl2.SDLK_KP_ENTER,
+
+
+
+
+
+
 }
-
-
-
