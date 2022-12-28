@@ -1,3 +1,6 @@
+import keys
+import sdl2.ext
+import sdl2
 import ctypes
 import lupa
 import sound_synthizer
@@ -18,9 +21,13 @@ def luaexec(code):
 
 
 def init():
+    sdl2.ext.init()
     global o
     global ctx
-    o = accessible_output2.outputs.auto.Auto()
+    global ao
+    o=sound.output.Output()
+    ao = accessible_output2.outputs.auto.Auto()
+    addfunc("newwindow",keys.newwindow)
     addfunc("luaexec", luaexec)
     addfunc("pyexec", exec)
     addfunc("luaeval", CGTRuntime.eval)
@@ -29,7 +36,7 @@ def init():
     addfunc("sound", sound.sound)
     addfunc("sound3d", sound3d)
     addfunc("elapsed", time.time)
-    addfunc("speak", o.output)#It does braille too
+    addfunc("speak", ao.output)#It does braille too
     addfunc("wait", time.sleep)
     with synthizer.initialized(
             log_level=synthizer.LogLevel.DEBUG, logging_backend=synthizer.LoggingBackend.STDERR):
