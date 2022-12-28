@@ -1,4 +1,5 @@
 import keys
+import sdl2.ext
 import sdl2
 import ctypes
 import lupa

@@ -191,19 +191,19 @@ keys = {
 }
 class window:
     def __init__(self,windowname):
-        self.window=sdl2.ext.window(windowname,(800,600))
-        self.window.Show()
+        self.window=sdl2.ext.Window(windowname,(800,600))
+        self.window.show()
     def loop(self):
         self.events=sdl2.ext.get_events()
     def pressed(self,key):
         for event  in self.events:
-            if event.type==sdl2.sdl_keydown and event.key.repeat==0 and event.key.keysym.sym==keys[key]:
-                return 1
-        return 0
+            if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0 and event.key.keysym.sym==keys[key]:
+                return True
+        return False
     def released(self,key):
         for event  in self.events:
-            if event.type==sdl2.sdl_keyuppppppppppppppppp and event.key.keysym.sym==keys[key]:
-                return 1
-        return 0
+            if event.type==sdl2.SDL_KEYUP and event.key.keysym.sym==keys[key]:
+                return True
+        return False
 def newwindow(windowname):
     return window(windowname)
