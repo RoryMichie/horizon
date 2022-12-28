@@ -95,7 +95,7 @@ keys = {
 }
 
 
-keys = {
+scans = {
     "a": sdl2.SDL_SCANCODE_A,
     "b": sdl2.SDL_SCANCODE_B,
     "c": sdl2.SDL_SCANCODE_C,
@@ -198,12 +198,12 @@ class window:
     def pressed(self,key):
         for event  in self.events:
             if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0 and event.key.keysym.sym==keys[key]:
-                return True
-        return False
+                return 1
+        return 0
     def released(self,key):
         for event  in self.events:
             if event.type==sdl2.SDL_KEYUP and event.key.keysym.sym==keys[key]:
-                return True
-        return False
+                return 1
+        return 0
 def newwindow(windowname):
     return window(windowname)
