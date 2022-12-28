@@ -68,7 +68,7 @@ keys = {
     "pageup": sdl2.SDLK_PAGEUP,
     "pagedown": sdl2.SDLK_PAGEDOWN,
     "delete": sdl2.SDLK_DELETE,
-    "cama": sdl2.SDLK_COMMA,
+    "comma": sdl2.SDLK_COMMA,
     "period": sdl2.SDLK_PERIOD,
     "lshift": sdl2.SDLK_LSHIFT,
     "rshift": sdl2.SDLK_RSHIFT,
@@ -164,7 +164,7 @@ scans = {
     "pageup": sdl2.SDL_SCANCODE_PAGEUP,
     "pagedown": sdl2.SDL_SCANCODE_PAGEDOWN,
     "delete": sdl2.SDL_SCANCODE_DELETE,
-    "cama": sdl2.SDL_SCANCODE_COMMA,
+    "comma": sdl2.SDL_SCANCODE_COMMA,
     "period": sdl2.SDL_SCANCODE_PERIOD,
     "lshift": sdl2.SDL_SCANCODE_LSHIFT,
     "rshift": sdl2.SDL_SCANCODE_RSHIFT,
@@ -193,8 +193,17 @@ class window:
     def __init__(self,windowname):
         self.window=sdl2.ext.Window(windowname,(800,600))
         self.window.show()
+        self.keystates={}
+    def held(self,key):
+        try:
+            return self.keystates[str(keys[key])]
+        except Exception as e:
+            return 0
     def loop(self):
         self.events=sdl2.ext.get_events()
+        for event in self.events:
+            if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0: self.keystates[str(event.key.keysym.sym)]=0
+            if event.type==sdl2.SDL_KEYUP: self.keystates[str(event.key.keysym.sym)]=1
     def pressed(self,key):
         for event  in self.events:
             if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0 and event.key.keysym.sym==keys[key]:

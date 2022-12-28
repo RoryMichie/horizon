@@ -48,12 +48,12 @@ def init():
 
 
 def runcode(b):
-    try:
-        CGTRuntime.execute(b)
-    except Exception as e:
-        print("An error occured: "+str(e)+". Press enter to continue")
+#try:
+    CGTRuntime.execute(b)
+#    except Exception as e:
+#        print("An error occured: "+str(e)+". Press enter to continue")
         
-        input()
+#        input()
 
 
 def console():
