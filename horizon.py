@@ -1,3 +1,5 @@
+import keys
+import sdl2
 import ctypes
 import lupa
 import sound_synthizer
@@ -18,11 +20,13 @@ def luaexec(code):
 
 
 def init():
+    sdl2.ext.init()
     global o
     global ctx
     global ao
     o=sound.output.Output()
     ao = accessible_output2.outputs.auto.Auto()
+    addfunc("newwindow",keys.newwindow)
     addfunc("luaexec", luaexec)
     addfunc("pyexec", exec)
     addfunc("luaeval", CGTRuntime.eval)
