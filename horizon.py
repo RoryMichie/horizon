@@ -1,3 +1,5 @@
+import gc
+import asyncio
 import keys
 import sdl2.ext
 import sdl2
@@ -27,6 +29,8 @@ def init():
     global ao
     o=sound.output.Output()
     ao = accessible_output2.outputs.auto.Auto()
+    addfunc("collect_garbage",gc.collect)
+    addfunc("keys",keys)
     addfunc("newwindow",keys.newwindow)
     addfunc("luaexec", luaexec)
     addfunc("pyexec", exec)
@@ -47,7 +51,7 @@ def init():
         main()
 
 
-def runcode(b):
+async def runcode(b):
 #try:
     CGTRuntime.execute(b)
 #    except Exception as e:
@@ -70,7 +74,7 @@ def main():
         if s == "run":
             b = input("Enter a file to run lua code from it")
             f = open(b)
-            runcode(f.read())
+            asyncio.run(runcode(f.read()))
         if s == "console":
             console()
 

@@ -1,3 +1,4 @@
+import sdl2.ext
 import sdl2
 keys = {
     "a": sdl2.SDLK_a,
@@ -204,6 +205,7 @@ class window:
         for event in self.events:
             if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0: self.keystates[str(event.key.keysym.sym)]=0
             if event.type==sdl2.SDL_KEYUP: self.keystates[str(event.key.keysym.sym)]=1
+        return 1
     def pressed(self,key):
         for event  in self.events:
             if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0 and event.key.keysym.sym==keys[key]:
