@@ -1,5 +1,4 @@
 import gc
-import asyncio
 import keys
 import sdl2.ext
 import sdl2
@@ -10,8 +9,8 @@ from sound_synthizer import synthizer
 import sound
 import random
 import time
-CGTRuntime = lupa.LuaRuntime()
 import accessible_output2.outputs.auto
+CGTRuntime = lupa.LuaRuntime()
 def addfunc(name, ref):
     CGTRuntime.globals()[name] = ref
 
@@ -51,7 +50,7 @@ def init():
         main()
 
 
-async def runcode(b):
+def runcode(b):
 #try:
     CGTRuntime.execute(b)
 #    except Exception as e:
@@ -74,7 +73,7 @@ def main():
         if s == "run":
             b = input("Enter a file to run lua code from it")
             f = open(b)
-            asyncio.run(runcode(f.read()))
+            runcode(f.read())
         if s == "console":
             console()
 
