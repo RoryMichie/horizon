@@ -1,6 +1,7 @@
-
+require "os"
 a=newwindow("3d music player")
 s=sound3d("music.wav")
+looping = false
 s.play()
 x=0
 y=0
@@ -40,6 +41,18 @@ addy = 0
 addz = 0
 s.position(x,y,z)
 end
+if a.pressed("l")==1 then
+if looping == false then
+looping = true
+
+else
+looping = false
+end
+s.loop(looping)
+speak("looping "..tostring(looping))
+end
+
+
 if a.pressed("f")==1 then
 speed = speed-0.01
 end
@@ -56,6 +69,6 @@ end
 end
 if a.pressed("escape")==1 then
 a.close()
-
+os.exit()
 end
 end
