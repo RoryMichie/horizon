@@ -40,10 +40,10 @@ addy = 0
 addz = 0
 s.position(x,y,z)
 end
-if pressed("f")==1 then
+if a.pressed("f")==1 then
 speed = speed-0.01
 end
-if pressed("s")==1 then
+if a.pressed("s")==1 then
 speed = speed+0.01
 end
 if addx~=0 or addy~=0 or addz~=0 then
