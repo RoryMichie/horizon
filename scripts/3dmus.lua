@@ -5,6 +5,7 @@ x=0
 y=0
 z=0
 timer=elapsed()
+looping = false
 while true do
 a.loop()
 addx=0
@@ -28,6 +29,23 @@ addz=addz-1
 end
 if a.held("pageup")==1 then
 addz=addz+1
+end
+if a.pressed("c")==1 then
+x = 0
+y = 0
+z = 0
+addx = 0
+addy = 0
+addz = 0
+s.position(x,y,z)
+end
+if a.pressed("l")==1 then
+if looping == false then
+looping = true
+else
+looping = false
+end
+s.loop(looping)
 end
 if addx~=0 or addy~=0 or addz~=0 then
 x=x+addx

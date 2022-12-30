@@ -1,6 +1,7 @@
 import synthizer
 
-buffer_cache={}
+buffer_cache = {}
+
 
 class sound_synthizer:
     def __init__(self, filename, context):
@@ -8,10 +9,10 @@ class sound_synthizer:
         self.context = context
         self.context.default_panner_strategy.value = synthizer.PannerStrategy.HRTF
         if filename in buffer_cache:
-            self.buffer=buffer_cache[filename]
+            self.buffer = buffer_cache[filename]
         else:
             self.buffer = synthizer.Buffer.from_file(filename)
-            buffer_cache[filename]=self.buffer
+            buffer_cache[filename] = self.buffer
         self.generator = synthizer.BufferGenerator(context)
         self.generator.buffer.value = self.buffer
 
@@ -36,9 +37,10 @@ class sound_synthizer:
         gain = 10**(volume/20)
         self.source.gain.value = gain
 
+    def loop(self, value):
+        self.generator.looping.value = value
+
     def __del__(self):
         self.source.dec_ref()
         self.generator.dec_ref()
         self.buffer.dec_ref()
-
-
