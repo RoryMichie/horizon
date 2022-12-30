@@ -46,6 +46,7 @@ else
 looping = false
 end
 s.loop(looping)
+speak("looping "..tostring(looping))
 end
 if addx~=0 or addy~=0 or addz~=0 then
 x=x+addx
