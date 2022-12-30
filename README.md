@@ -37,24 +37,24 @@ This engine requires the Microsoft visual c++ 2017 redistributable to work corre
 https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 
-## important note
+## Important note
 
 Horizon is not a finished product at the time of this writing. We are publishing the code so that those who wish to work on it and track its development can contribute, learn how it works and experiment, though we do not and will not guarantee its stability soon.
-##platform support
+## Platform support
 Horizon should work out of the box on the following platforms:
-*Windows
-    *x64
-    *ARM64
-*Mac OS
-    *x86-64
-    *Apple m1/m2(aka ARM64)
-*Linux
-    *x86-64
-    *ARM64
+* Windows
+    * X64
+    * ARM64
+* Mac OS
+    * X86-64
+    * Apple m1/m2(aka ARM64)
+* Linux
+    * X86-64
+    * ARM64
 
-###untested platforms
+### untested platforms
 These platforms should work; however, they have not been evaluated and we will not be providing support for issues relating to building and running on said platforms
-*x86: aka IA32: this goes for Linux, Mac, and Windows as 32-bit hardware has become obsolete
-*ARM32: Hardware is simply unavailable to easily test this architecture, however it should work as expected with minor tweaks
-*Mips, PPc, etc.: These architectures are not common among consumer hardware, and thus they have not been tested.
+* X86: aka IA32: this goes for Linux, Mac, and Windows as 32-bit hardware has become obsolete
+* ARM32: Hardware is simply unavailable to easily test this architecture, however it should work as expected with minor tweaks
+* Mips, PPc, etc.: These architectures are not common among consumer hardware, and thus they have not been tested.
 
