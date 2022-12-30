@@ -1,3 +1,4 @@
+
 a=newwindow("3d music player")
 s=sound3d("music.wav")
 s.play()
@@ -5,13 +6,13 @@ x=0
 y=0
 z=0
 timer=elapsed()
-looping = false
+speed = 0.075
 while true do
 a.loop()
 addx=0
 addy=0
 addz=0
-if elapsed()-timer>0.099 then
+if elapsed()-timer>speed then
 if a.held("left")==1 then
 addx=addx-1
 end
@@ -39,14 +40,11 @@ addy = 0
 addz = 0
 s.position(x,y,z)
 end
-if a.pressed("l")==1 then
-if looping == false then
-looping = true
-else
-looping = false
+if pressed("f")==1 then
+speed = speed-0.01
 end
-s.loop(looping)
-speak("looping "..tostring(looping))
+if pressed("s")==1 then
+speed = speed+0.01
 end
 if addx~=0 or addy~=0 or addz~=0 then
 x=x+addx
@@ -58,5 +56,6 @@ end
 end
 if a.pressed("escape")==1 then
 a.close()
+
 end
 end
