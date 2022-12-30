@@ -1,3 +1,4 @@
+require "os"
 h=0
 cs=sound3d("click.wav")
 a=newwindow("thing")
@@ -17,4 +18,8 @@ while true do
     if f>40 then
         speak(tostring(f))
     end
+    if a.pressed("escape")==1 then
+        a.close()
+    os.exit()
+end
 end

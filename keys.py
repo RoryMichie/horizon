@@ -193,9 +193,14 @@ scans = {
 }
 class window:
     def __init__(self,windowname):
+        # sdl can open only one window at a time, so we will initialize and free it here
+        sdl2.ext.init()
         self.window=sdl2.ext.Window(windowname,(800,600))
         self.window.show()
         self.keystates={}
+    def close(self):
+        self.window.close()
+        sdl2.ext.quit()
     def held(self,key):
         try:
             return self.keystates[str(keys[key])]

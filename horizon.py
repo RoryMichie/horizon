@@ -22,7 +22,6 @@ def luaexec(code):
 
 
 def init():
-    sdl2.ext.init()
     global o
     global ctx
     global ao
