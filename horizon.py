@@ -1,13 +1,11 @@
 import gc
 import keys
-import sdl2.ext
-import sdl2
 import ctypes
 import lupa
 import sound_synthizer
 from sound_synthizer import synthizer
 import sound
-import random
+import os
 import time
 import accessible_output2.outputs.auto
 CGTRuntime = lupa.LuaRuntime()
@@ -27,6 +25,8 @@ def init():
     global ao
     o=sound.output.Output()
     ao = accessible_output2.outputs.auto.Auto()
+    addfunc("changedir",os.chdir)
+    addfunc("len",len)
     addfunc("collect_garbage",gc.collect)
     addfunc("keys",keys)
     addfunc("newwindow",keys.newwindow)
