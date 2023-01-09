@@ -22,4 +22,5 @@ while true do
         a.close()
     os.exit()
 end
+    speak(tostring(elapsed()-e))
 end
