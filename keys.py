@@ -63,6 +63,7 @@ keys = {
     "slash": sdl2.SDLK_SLASH,
     "backslash": sdl2.SDLK_BACKSLASH,
     "apostrophe": sdl2.SDLK_QUOTE,
+    "dash": sdl2.SDLK_MINUS,
     "equals": sdl2.SDLK_EQUALS,
     "backspace": sdl2.SDLK_BACKSPACE,
     "home": sdl2.SDLK_HOME,
