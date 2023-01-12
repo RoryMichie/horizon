@@ -4,15 +4,24 @@ buffer_cache = {}
 
 
 class sound_synthizer:
-    def __init__(self, filename, context):
+    def __init__(self, filename, context, hrtf=True, source_type="3d"):
         self.filename = filename
         self.context = context
-        self.context.default_panner_strategy.value = synthizer.PannerStrategy.HRTF
-#        if filename in buffer_cache:
-#            self.buffer = buffer_cache[filename]
-#        else:
-        self.buffer = synthizer.Buffer.from_file(filename)
-#            buffer_cache[filename] = self.buffer
+        self.hrtf = hrtf
+        self.source_type = source_type
+        if hrtf == True:
+
+            self.context.default_panner_strategy.value = synthizer.PannerStrategy.HRTF
+        elif hrtf == False:
+            self.context.default_panner_strategy.value = synthizer.PannerStrategy.STEREO
+        else:
+            raise ValueError
+
+        if filename in buffer_cache:
+            self.buffer = buffer_cache[filename]
+        else:
+            self.buffer = synthizer.Buffer.from_file(filename)
+            buffer_cache[filename] = self.buffer
         self.generator = synthizer.BufferGenerator(context)
         self.generator.buffer.value = self.buffer
 
@@ -26,6 +35,13 @@ class sound_synthizer:
 
     def pause(self):
         self.source.pause()
+
+    def stop(self):
+        self.generator.playback_position = 0
+        self.source.pause()
+
+    def set_pitch(self, pitch):
+        self.generator.pitch_bend.value = pitch
 
     def position(self, x, y=0, z=0):
         self.source.position.value = (x, y, z)
@@ -43,4 +59,6 @@ class sound_synthizer:
     def __del__(self):
         self.source.dec_ref()
         self.generator.dec_ref()
-        self.buffer.dec_ref()
+
+
+
