@@ -16,7 +16,6 @@ class sound_synthizer:
             self.context.default_panner_strategy.value = synthizer.PannerStrategy.STEREO
         else:
             raise ValueError
-
         if filename in buffer_cache:
             self.buffer = buffer_cache[filename]
         else:
@@ -25,7 +24,15 @@ class sound_synthizer:
         self.generator = synthizer.BufferGenerator(context)
         self.generator.buffer.value = self.buffer
 
-        self.source = synthizer.Source3D(context)
+        if source_type == "3d":
+
+            self.source = synthizer.Source3D(context)
+        elif source_type == "2d":
+            self.source = synthizer.ScalarPannedSource(context)
+        elif source_type == "angular":
+            self.source = synthizer.AngularPannedSource(context)
+        else:
+            raise ValueError("must be 2d, 3d, or angular")
         self.source.add_generator(self.generator)
         self.source.pause()
         self.generator.playback_position.value = 0
@@ -37,7 +44,7 @@ class sound_synthizer:
         self.source.pause()
 
     def stop(self):
-        self.generator.playback_position = 0
+        self.generator.playback_position.value = 0
         self.source.pause()
 
     def set_pitch(self, pitch):
@@ -59,6 +66,3 @@ class sound_synthizer:
     def __del__(self):
         self.source.dec_ref()
         self.generator.dec_ref()
-
-
-
