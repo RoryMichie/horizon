@@ -1,6 +1,5 @@
 import gc
 import keys
-import ctypes
 import lupa
 import sound_synthizer
 from sound_synthizer import synthizer
@@ -8,12 +7,17 @@ import sound
 import os
 import time
 import accessible_output2.outputs.auto
+
 CGTRuntime = lupa.LuaRuntime()
+
+
 def addfunc(name, ref):
     CGTRuntime.globals()[name] = ref
 
+
 def sound3d(name):
     return sound_synthizer.sound_synthizer(name, ctx)
+
 
 def luaexec(code):
     CGTRuntime.execute(code)
@@ -23,13 +27,13 @@ def init():
     global o
     global ctx
     global ao
-    o=sound.output.Output()
+    o = sound.output.Output()
     ao = accessible_output2.outputs.auto.Auto()
-    addfunc("changedir",os.chdir)
-    addfunc("len",len)
-    addfunc("collect_garbage",gc.collect)
-    addfunc("keys",keys)
-    addfunc("newwindow",keys.newwindow)
+    addfunc("changedir", os.chdir)
+    addfunc("len", len)
+    addfunc("collect_garbage", gc.collect)
+    addfunc("keys", keys)
+    addfunc("newwindow", keys.newwindow)
     addfunc("luaexec", luaexec)
     addfunc("pyexec", exec)
     addfunc("luaeval", CGTRuntime.eval)
@@ -38,10 +42,12 @@ def init():
     addfunc("sound", sound.sound)
     addfunc("sound3d", sound3d)
     addfunc("elapsed", time.time)
-    addfunc("speak", ao.output)#It does braille too
+    addfunc("speak", ao.output)  # It does braille too
     addfunc("wait", time.sleep)
     with synthizer.initialized(
-            log_level=synthizer.LogLevel.DEBUG, logging_backend=synthizer.LoggingBackend.STDERR):
+        log_level=synthizer.LogLevel.DEBUG,
+        logging_backend=synthizer.LoggingBackend.STDERR,
+    ):
 
         ctx = synthizer.Context()
 
@@ -50,11 +56,13 @@ def init():
 
 
 def runcode(b):
-#try:
+    # try:
     CGTRuntime.execute(b)
+
+
 #    except Exception as e:
 #        print("An error occured: "+str(e)+". Press enter to continue")
-        
+
 #        input()
 
 

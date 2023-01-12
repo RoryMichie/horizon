@@ -9,10 +9,10 @@ class sound_synthizer:
         self.context = context
         self.hrtf = hrtf
         self.source_type = source_type
-        if hrtf == True:
+        if hrtf is True:
 
             self.context.default_panner_strategy.value = synthizer.PannerStrategy.HRTF
-        elif hrtf == False:
+        elif hrtf is False:
             self.context.default_panner_strategy.value = synthizer.PannerStrategy.STEREO
         else:
             raise ValueError
@@ -57,7 +57,7 @@ class sound_synthizer:
         self.generator.playback_position.value = position
 
     def gain(self, volume):
-        gain = 10**(volume/20)
+        gain = 10 ** (volume / 20)
         self.source.gain.value = gain
 
     def loop(self, value):

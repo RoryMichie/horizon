@@ -1,6 +1,7 @@
 import gc
 import sdl2.ext
 import sdl2
+
 keys = {
     "a": sdl2.SDLK_a,
     "b": sdl2.SDLK_b,
@@ -89,12 +90,6 @@ keys = {
     "pad8": sdl2.SDLK_KP_8,
     "pad9": sdl2.SDLK_KP_9,
     "padenter": sdl2.SDLK_KP_ENTER,
-
-
-
-
-
-
 }
 
 
@@ -185,44 +180,53 @@ scans = {
     "pad8": sdl2.SDL_SCANCODE_KP_8,
     "pad9": sdl2.SDL_SCANCODE_KP_9,
     "padenter": sdl2.SDL_SCANCODE_KP_ENTER,
-
-
-
-
-
-
 }
+
+
 class window:
-    def __init__(self,windowname):
+    def __init__(self, windowname):
         # sdl can open only one window at a time, so we will initialize and free it here
         sdl2.ext.init()
-        self.window=sdl2.ext.Window(windowname,(800,600))
+        self.window = sdl2.ext.Window(windowname, (800, 600))
         self.window.show()
-        self.keystates={}
+        self.keystates = {}
+
     def close(self):
         self.window.close()
         sdl2.ext.quit()
-    def held(self,key):
+
+    def held(self, key):
         try:
             return self.keystates[str(keys[key])]
         except Exception as e:
             return 0
+
     def loop(self):
-        self.events=sdl2.ext.get_events()
+        self.events = sdl2.ext.get_events()
         for event in self.events:
-            if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0: self.keystates[str(event.key.keysym.sym)]=1
-            if event.type==sdl2.SDL_KEYUP: self.keystates[str(event.key.keysym.sym)]=0
-        #gc.collect()
+            if event.type == sdl2.SDL_KEYDOWN and event.key.repeat == 0:
+                self.keystates[str(event.key.keysym.sym)] = 1
+            if event.type == sdl2.SDL_KEYUP:
+                self.keystates[str(event.key.keysym.sym)] = 0
+        # gc.collect()
         return 1
-    def pressed(self,key):
-        for event  in self.events:
-            if event.type==sdl2.SDL_KEYDOWN and event.key.repeat==0 and event.key.keysym.sym==keys[key]:
+
+    def pressed(self, key):
+        for event in self.events:
+            if (
+                event.type == sdl2.SDL_KEYDOWN
+                and event.key.repeat == 0
+                and event.key.keysym.sym == keys[key]
+            ):
                 return 1
         return 0
-    def released(self,key):
-        for event  in self.events:
-            if event.type==sdl2.SDL_KEYUP and event.key.keysym.sym==keys[key]:
+
+    def released(self, key):
+        for event in self.events:
+            if event.type == sdl2.SDL_KEYUP and event.key.keysym.sym == keys[key]:
                 return 1
         return 0
+
+
 def newwindow(windowname):
     return window(windowname)
