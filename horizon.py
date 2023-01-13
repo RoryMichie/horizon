@@ -1,12 +1,14 @@
 import gc
-import keys
-import lupa
-import sound_synthizer
-from sound_synthizer import synthizer
-import sound
 import os
 import time
+
 import accessible_output2.outputs.auto
+import lupa
+
+import keys
+import sound
+import sound_synthizer
+from sound_synthizer import synthizer
 
 CGTRuntime = lupa.LuaRuntime()
 
