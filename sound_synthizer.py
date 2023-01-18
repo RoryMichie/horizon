@@ -51,7 +51,15 @@ class sound_synthizer:
         self.generator.pitch_bend.value = pitch
 
     def position(self, x, y=0, z=0):
-        self.source.position.value = (x, y, z)
+        if self.source_type == "3d":
+
+            self.source.position.value = (x, y, z)
+
+        elif self.source_type == "angular":
+            self.source.azimuth.value = x
+            self.source.elevation.value = y
+        elif self.source_type == "2d":
+            self.source.panning_scalar.value = x
 
     def seek(self, position):
         self.generator.playback_position.value = position
