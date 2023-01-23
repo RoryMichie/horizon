@@ -1,7 +1,10 @@
+import argparse
 import gc
 import os
+import sys
 import time
 
+sys.coinit_flags = 0
 import accessible_output2.outputs.auto
 import lupa
 
@@ -10,11 +13,12 @@ import sound
 import sound_synthizer
 from sound_synthizer import synthizer
 
-CGTRuntime = lupa.LuaRuntime()
+
+horizon_runtime = lupa.LuaRuntime()
 
 
-def addfunc(name, ref):
-    CGTRuntime.globals()[name] = ref
+def lua_wrap(name, ref):
+    horizon_runtime.globals()[name] = ref
 
 
 def sound3d(name):
@@ -22,44 +26,39 @@ def sound3d(name):
 
 
 def luaexec(code):
-    CGTRuntime.execute(code)
+    horizon_runtime.execute(code)
 
 
 def init():
-    global o
     global ctx
     global ao
-    o = sound.output.Output()
     ao = accessible_output2.outputs.auto.Auto()
-    addfunc("changedir", os.chdir)
-    addfunc("len", len)
-    addfunc("collect_garbage", gc.collect)
-    addfunc("keys", keys)
-    addfunc("newwindow", keys.newwindow)
-    addfunc("luaexec", luaexec)
-    addfunc("pyexec", exec)
-    addfunc("luaeval", CGTRuntime.eval)
-    addfunc("urlsound", sound.urlsound)
-    addfunc("pyeval", eval)
-    addfunc("sound", sound.sound)
-    addfunc("sound3d", sound3d)
-    addfunc("elapsed", time.time)
-    addfunc("speak", ao.output)  # It does braille too
-    addfunc("wait", time.sleep)
-    with synthizer.initialized(
-        log_level=synthizer.LogLevel.DEBUG,
-        logging_backend=synthizer.LoggingBackend.STDERR,
-    ):
+    lua_wrap("changedir", os.chdir)
+    lua_wrap("len", len)
+    lua_wrap("collect_garbage", gc.collect)
+    lua_wrap("keys", keys)
+    lua_wrap("newwindow", keys.newwindow)
+    lua_wrap("luaexec", luaexec)
+    lua_wrap("pyexec", exec)
+    lua_wrap("luaeval", horizon_runtime.eval)
+    lua_wrap("urlsound", sound.urlsound)
+    lua_wrap("pyeval", eval)
+    lua_wrap("sound", sound.sound)
+    lua_wrap("sound3d", sound3d)
+    lua_wrap("elapsed", time.time)
+    lua_wrap("speak", ao.output)  # It does braille too
+    lua_wrap("wait", time.sleep)
+    with synthizer.initialized():
 
         ctx = synthizer.Context()
 
         ctx.default_panner_strategy.value = synthizer.PannerStrategy.HRTF
-        main()
+        parse_command()
 
 
 def runcode(b):
     # try:
-    CGTRuntime.execute(b)
+    horizon_runtime.execute(b)
 
 
 #    except Exception as e:
@@ -69,22 +68,36 @@ def runcode(b):
 
 
 def console():
-    print("Welcome to the cgt debugging console.")
+    print("Welcome to the horizon debugging console.")
     while True:
         print(">")
         runcode(input())
 
 
-def main():
-    while True:
-        print("Select something to do: run, or console", end="\r\n")
-        s = input()
-        if s == "run":
-            b = input("Enter a file to run lua code from it")
-            f = open(b)
+def parse_command():
+    parser = argparse.ArgumentParser()
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "-c",
+        "--console",
+        help="launch a console for testing and debugging",
+        action="store_true",
+    )
+    group.add_argument("-f", "--filename", help="the name of the file to be executed")
+
+    args = parser.parse_args()
+    if args.console:
+        console()
+    elif args.filename is not None:
+        with open(args.filename) as f:
             runcode(f.read())
-        if s == "console":
-            console()
+    if len(sys.argv) == 1:
+        parser.print_help()
 
 
-init()
+def main():
+    init()
+
+
+if __name__ == "__main__":
+    main()
