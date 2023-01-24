@@ -14,7 +14,7 @@ while true do
     if a.pressed("h")==1 then
         speak("hello there, you just pressed h")
     end
-   f=elapsed()-e
+    f=elapsed()-e
     if f>40 then
         speak(tostring(f))
     end

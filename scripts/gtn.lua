@@ -7,7 +7,7 @@ while true do
     io.write("Enter your guess\n")
     g = tonumber(io.read())
     io.write(tostring(g).."\n")
-if g < target then
+    if g < target then
         io.write("Too low!\n")
     elseif g > target then
         io.write("Too high!\n")
