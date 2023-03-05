@@ -7,3 +7,5 @@ cgt.spec
 venv
 env
 projects
+*.bat
+*.reapeaks
