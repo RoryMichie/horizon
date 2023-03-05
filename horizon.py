@@ -14,6 +14,7 @@ import sound_synthizer
 from sound_synthizer import synthizer
 
 
+horizon_version="0.4.0 alpha"
 horizon_runtime = lupa.LuaRuntime()
 
 
@@ -84,10 +85,13 @@ def parse_command():
         action="store_true",
     )
     group.add_argument("-f", "--filename", help="the name of the file to be executed")
+    group.add_argument("-v","--version",help="Displays horizon version, as well as lua version and implementation.",action="store_true")
 
     args = parser.parse_args()
     if args.console:
         console()
+    elif args.version:
+        print("Horizon version: "+horizon_version+". "+horizon_runtime.lua_implementation+" (lua version "+str(horizon_runtime.lua_version)+").")
     elif args.filename is not None:
         with open(args.filename) as f:
             runcode(f.read())
