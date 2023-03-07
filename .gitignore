@@ -6,3 +6,4 @@ horizon.spec
 .DS_Store
 venv
 env
+projects/*
