@@ -2,7 +2,7 @@ __pycache__
 cgtvenv
 dist
 build
-cgt.spec
+horizon.spec
 .DS_Store
 venv
 env
