@@ -71,6 +71,7 @@ class sound_synthizer:
     def loop(self, value):
         self.generator.looping.value = value
 
-    def __del__(self):
+    def destroy(self): self.__del__() #wrapper for lua otherwise unnecessary. Nilling sound objects in lua does not destroy them in python, only unlinks it.
+def __del__(self):
         self.source.dec_ref()
         self.generator.dec_ref()
