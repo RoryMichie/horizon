@@ -15,7 +15,7 @@ class sound_synthizer:
         elif hrtf is False:
             self.context.default_panner_strategy.value = synthizer.PannerStrategy.STEREO
         else:
-            raise ValueError
+            raise TypeError("expected True/False value for hrtf, but got "+str(type(hrtf)))
         if filename in buffer_cache:
             self.buffer = buffer_cache[filename]
         else:
@@ -29,10 +29,12 @@ class sound_synthizer:
             self.source = synthizer.Source3D(context)
         elif source_type == "2d":
             self.source = synthizer.ScalarPannedSource(context)
+        elif source_type == "direct":
+            self.source=synthizer.DirectSource(context)
         elif source_type == "angular":
             self.source = synthizer.AngularPannedSource(context)
         else:
-            raise ValueError("must be 2d, 3d, or angular")
+            raise ValueError("must be 2d, 3d, angular, or direct")
         self.source.add_generator(self.generator)
         self.source.pause()
         self.generator.playback_position.value = 0
@@ -72,6 +74,6 @@ class sound_synthizer:
         self.generator.looping.value = value
 
     def destroy(self): self.__del__() #wrapper for lua otherwise unnecessary. Nilling sound objects in lua does not destroy them in python, only unlinks it.
-def __del__(self):
+    def __del__(self):
         self.source.dec_ref()
         self.generator.dec_ref()

@@ -22,8 +22,7 @@ def lua_wrap(name, ref):
     horizon_runtime.globals()[name] = ref
 
 
-def sound3d(name):
-    return sound_synthizer.sound_synthizer(name, ctx)
+
 
 
 def luaexec(code):
@@ -53,10 +52,11 @@ def init():
 
         ctx = synthizer.Context()
 
-        ctx.default_panner_strategy.value = synthizer.PannerStrategy.HRTF
+
         parse_command()
 
 
+def sound3d(filename,hrtf=True,source_type="3d"): return sound_synthizer.sound_synthizer(filename,ctx,hrtf,source_type)
 def runcode(b):
     # try:
     horizon_runtime.execute(b)
