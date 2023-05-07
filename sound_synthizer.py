@@ -15,7 +15,9 @@ class sound_synthizer:
         elif hrtf is False:
             self.context.default_panner_strategy.value = synthizer.PannerStrategy.STEREO
         else:
-            raise TypeError("expected True/False value for hrtf, but got "+str(type(hrtf)))
+            raise TypeError(
+                "expected True/False value for hrtf, but got " + str(type(hrtf))
+            )
         if filename in buffer_cache:
             self.buffer = buffer_cache[filename]
         else:
@@ -27,14 +29,14 @@ class sound_synthizer:
         if source_type == "3d":
 
             self.source = synthizer.Source3D(context)
-        elif source_type == "2d":
+        elif source_type == "scalar":
             self.source = synthizer.ScalarPannedSource(context)
         elif source_type == "direct":
-            self.source=synthizer.DirectSource(context)
+            self.source = synthizer.DirectSource(context)
         elif source_type == "angular":
             self.source = synthizer.AngularPannedSource(context)
         else:
-            raise ValueError("must be 2d, 3d, angular, or direct")
+            raise ValueError("must be scalar, 3d, angular, or direct")
         self.source.add_generator(self.generator)
         self.source.pause()
         self.generator.playback_position.value = 0
@@ -60,7 +62,7 @@ class sound_synthizer:
         elif self.source_type == "angular":
             self.source.azimuth.value = x
             self.source.elevation.value = y
-        elif self.source_type == "2d":
+        elif self.source_type == "scalar":
             self.source.panning_scalar.value = x
 
     def seek(self, position):
@@ -73,7 +75,9 @@ class sound_synthizer:
     def loop(self, value):
         self.generator.looping.value = value
 
-    def destroy(self): self.__del__() #wrapper for lua otherwise unnecessary. Nilling sound objects in lua does not destroy them in python, only unlinks it.
+    def destroy(self):
+        self.__del__()  # wrapper for lua otherwise unnecessary. Nilling sound objects in lua does not destroy them in python, only unlinks it.
+
     def __del__(self):
         self.source.dec_ref()
         self.generator.dec_ref()

@@ -227,5 +227,5 @@ class window:
         return 0
 
 
-def newwindow(windowname):
+def new_window(windowname):
     return window(windowname)
