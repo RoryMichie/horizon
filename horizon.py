@@ -48,12 +48,12 @@ def init():
     lua_wrap("elapsed", time.time)
     lua_wrap("speak", ao.output)  # It does braille too
     lua_wrap("wait", time.sleep)
-    with synthizer.initialized():
+    
 
-        ctx = synthizer.Context()
+    ctx = synthizer.Context()
 
 
-        parse_command()
+    parse_command()
 
 
 def sound3d(filename,hrtf=True,source_type="3d"): return sound_synthizer.sound_synthizer(filename,ctx,hrtf,source_type)
@@ -104,4 +104,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with synthizer.initialized(): 
+        main()
