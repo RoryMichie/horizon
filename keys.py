@@ -220,6 +220,15 @@ class window:
                 return 1
         return 0
 
+    def pressed_or_repeated(self, key):
+        for event in self.events:
+            if (
+                event.type == sdl2.SDL_KEYDOWN
+                and event.key.keysym.sym == keys[key]
+            ):
+                return 1
+        return 0
+
     def released(self, key):
         for event in self.events:
             if event.type == sdl2.SDL_KEYUP and event.key.keysym.sym == keys[key]:
