@@ -42,11 +42,12 @@ class sound_synthizer:
         self.generator.playback_position.value = 0
 
     def play(self):
-        self.source.play()
+
         if self.generator.playback_position.value >= self.buffer.get_length_in_seconds():
 
-            self.generator.pause
             self.generator.playback_position.value = 0
+            self.source.pause()
+        self.source.play()
 
 
     def resume(self):
