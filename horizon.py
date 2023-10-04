@@ -3,10 +3,19 @@ import gc
 import os
 import sys
 import time
+import re
 
 sys.coinit_flags = 0
 import accessible_output2.outputs.auto
-import lupa
+try:
+    import lupa.luajit21 as lupa
+except ImportError:
+    try:
+        import lupa.luajit20 as lupa
+    except ImportError:
+        import warnings
+        warnings.warn("Unable to import lupa.luajit21 or lupa.luajit20, falling back to default lupa.")
+        import lupa
 
 import keys
 import sound
@@ -105,6 +114,11 @@ def parse_command():
         )
     elif args.filename is not None:
         with open(args.filename) as f:
+            path = os.path.realpath(f.name)
+            path = re.sub(r"\\", "/", path)
+            path = re.sub(r"[^/]+$", "", path)
+            os.chdir(path=path)
+
             runcode(f.read())
     if len(sys.argv) == 1:
         parser.print_help()

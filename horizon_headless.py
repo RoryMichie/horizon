@@ -5,7 +5,15 @@ import sys
 import time
 
 sys.coinit_flags = 0
-import lupa
+try:
+    import lupa.luajit21 as lupa
+except ImportError:
+    try:
+        import lupa.luajit20 as lupa
+    except ImportError:
+        import warnings
+        warnings.warn("Unable to import lupa.luajit21 or lupa.luajit20, falling back to default lupa.")
+        import lupa
 
 horizon_version = "0.4.0 alpha"
 horizon_runtime = lupa.LuaRuntime()
