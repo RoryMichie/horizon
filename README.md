@@ -33,17 +33,14 @@ Horizon should work out of the box on the following platforms:
 * Windows
     * X64
     * ARM64
-* Mac OS
-    * X86-64
-    * Apple m1/m2(aka ARM64)
 * Linux
     * X86-64
     * ARM64
 ### A brief note about Mac OS
-It has come to our attention that there is a rather nasty bug in the current version of Synthizer that effectively prevents it from being used on MacOS. While the engine itself theoretically supports MacOS, sound is incredibly important for proper game creation and enjoyment. Therefore, MacOS is listed as unsupported until or unless this bug within the primary sound module is resolved.
+It has come to our attention that there is a rather nasty bug in the current version of Synthizer that effectively prevents it from being used on MacOS. While the engine itself theoretically supports MacOS, sound is incredibly important for proper game creation and enjoyment. Therefore, MacOS will be treated as unsupported until or unless this bug within the primary sound module is resolved.
 ## untested platforms
 These platforms should work; however, they have not been evaluated and we will not be providing support for issues relating to building and running on said platforms
 * X86: aka IA32: this goes for Linux, Mac, and Windows as 32-bit hardware has become obsolete
-* ARM32: Hardware is simply unavailable to easily test this architecture, however it should work as expected with minor tweaks
+* ARM32: Hardware is simply unavailable to easily test this architecture, however it should work as expected assuming that compilers and toolchains exist that will compile everything that is required for the engine.
 * Mips, PPc, etc.: These architectures are not common among consumer hardware, and thus they have not been tested.
 
